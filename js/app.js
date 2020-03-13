@@ -21,12 +21,12 @@ function hideSelectTheme()
 }
 
 
-design.addEventListener("change", event => {
+design.addEventListener("change", (event) => {
        //1Select, nothing changes, 
        //2change, it goes to the else statement regardless
         //3 click, it goes to the else statement regardless
 
-    if (event.selectTheme.selected == "true") { // returns error select theme is undefined
+    if (event.target.value === "select theme") { // returns error select theme is undefined
          //1 (event.SelectTheme) works
 
         function hideColor() {
@@ -50,6 +50,7 @@ design.addEventListener("change", event => {
     else {
 
         console.log("in here");
+        color.style.display = "block";
 
 
 
