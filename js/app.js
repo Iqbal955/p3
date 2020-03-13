@@ -1,9 +1,9 @@
 document.getElementById("name").focus();
 var other = document.getElementById("other-title");
-var selectTheme = document.getElementById("selectTheme"); //is the select theme option ID
+var selectTheme = document.getElementById("selectTheme");
 var color = document.getElementById("color");
 var colorlabel = document.getElementById("colors-js-puns");
-
+var design = document.getElementById("design");
 console.log(other);
 
 
@@ -21,35 +21,40 @@ function hideSelectTheme()
 }
 
 
+design.addEventListener("change", event => {
+       //1Select, nothing changes, 
+       //2change, it goes to the else statement regardless
+        //3 click, it goes to the else statement regardless
 
+    if (event.selectTheme.selected == "true") { // returns error select theme is undefined
+         //1 (event.SelectTheme) works
 
-if (selectTheme.selected == true) {
- 
-    function hideColor() {
+        function hideColor() {
 
-        color.style.display = "none";
-        var newselectID = document.createElement("select");
-        var option = document.createElement("option");
-        option.textContent = "Please choose theme";
-        newselectID.appendChild(option);
-        colorlabel.appendChild(newselectID);
+            color.style.display = "none";
+            var newselectID = document.createElement("select");
+            var option = document.createElement("option");
+            option.textContent = "Please choose theme";
+            newselectID.appendChild(option);
+            colorlabel.appendChild(newselectID);
 
-        console.log("here");
+            console.log("here");
+
+        }
+
+        hideColor()
+
 
     }
 
-    hideColor()
+    else {
 
-
-}
-
-else {
-
-    console.log("in here");
+        console.log("in here");
 
 
 
-}
+    }
+});
 
 
 
