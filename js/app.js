@@ -1,6 +1,6 @@
 document.getElementById("name").focus();
 var other = document.getElementById("other-title");
-var selectTheme = document.getElementById("selectTheme");
+var selectTheme = document.getElementById("selectTheme"); //is the select theme option ID
 var color = document.getElementById("color");
 var colorlabel = document.getElementById("colors-js-puns");
 
