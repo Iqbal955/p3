@@ -1,12 +1,23 @@
 document.getElementById("name").focus();
+var name = document.getElementById("name");
 var other = document.getElementById("other-title");
 var selectTheme = document.getElementById("selectTheme");
 var color = document.getElementById("color");
+var userpayment = document.getElementById("user-payment");
 var colorlabel = document.getElementById("colors-js-puns");
 var design = document.getElementById("design");
 console.log(other);
 var activity = document.querySelector(".activities");
 var activityinput = document.querySelectorAll(".activities input");
+var creditcardform = document.getElementById("credit-card");
+var paypalform = document.getElementById("paypal");
+var bitcoinform = document.getElementById("bitcoin");
+var form = document.querySelector("form");
+console.log(form);
+
+creditcardform.style.display = "none";
+bitcoinform.style.display = "none";
+paypalform.style.display = "none";
 
 
 
@@ -168,3 +179,111 @@ activity.addEventListener("change", (e) => {
 
 );
 
+
+var paymentelement = document.getElementById("payment");
+var selectpayment = document.querySelector('option[value="select method"]')
+console.log(selectpayment);
+
+
+paymentelement.addEventListener("click", (e) =>
+{
+    for (i = 0; i < paymentelement.length; i++) {
+        selectpayment.style.display = "none";
+
+
+
+        if (e.target.value == "credit card") {
+
+
+            var creditcard = document.querySelector('option[value="credit card"]');
+            creditcardform.style.display = "block";
+            bitcoin.style.display = "none";
+            paypalform.style.display = "none";
+
+
+            //       creditcard.style.display = "block";
+
+        }
+
+        else if (e.target.value == "paypal") {
+
+
+            paypalform.style.display = "block";
+            bitcoin.style.display = "none";
+            creditcardform.style.display = "none";
+
+
+        }
+        else if (e.target.value == "bitcoin") {
+
+            bitcoin.style.display = "block";
+            paypalform.style.display = "none";
+            creditcardform.style.display = "none";
+
+        }
+
+
+
+        // if (e.target.value === "select method") {
+        //    paymentelement.style.display == none;
+
+
+        // }
+
+        //  for (i = 0; i < paymentelement.length; i++) {
+
+
+        // console.log(paymentelement[i])
+
+
+
+
+
+        //}
+
+    }
+
+});
+
+
+const nameValidator = () => {
+
+    var nameInput = name.value;
+  
+    if (nameInput.length > 0) {
+
+        name.style.borderColor = "white";
+
+
+    }
+
+    else
+    {
+        name.style.borderColor = "red";
+
+    }
+
+
+}
+
+const emailValidtor = () => {
+
+    var emailInput = email.value;
+    
+ 
+
+
+}
+
+
+form.addEventListener("submit", (e) => {
+
+
+    console.log("works");
+    e.preventDefault();
+    nameValidator();
+   
+
+
+
+});
