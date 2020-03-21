@@ -20,8 +20,8 @@ var cardzip = document.getElementById("zip");
 var cvv = document.getElementById("cvv");
 var creditcard = document.querySelector('option[value="credit card"]');
 var creditcardfield = document.querySelector(".col-6 col");
-//creditcardfield.appendChild(document.createElement('p'));
-//creditcardfield.appendChild(creditcardmissingtext);
+ // var creditcardmissingtext = creditcardfield.appendChild(document.createElement('p'));
+
 
 
 console.log(form);
