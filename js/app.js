@@ -19,9 +19,13 @@ var cardmonth = document.getElementById("");
 var cardzip = document.getElementById("zip");
 var cvv = document.getElementById("cvv");
 var creditcard = document.querySelector('option[value="credit card"]');
-var creditcardfield = document.querySelector(".col-6 col");
- // var creditcardmissingtext = creditcardfield.appendChild(document.createElement('p'));
-
+var creditcardfield = document.querySelector(".col-6");
+var creditcardmissingtext = document.createElement('p');
+creditcardfield.appendChild(creditcardmissingtext);
+var pleaseSelectTheme = document.createElement("option");
+color.appendChild(pleaseSelectTheme);
+pleaseSelectTheme.selected = true;
+pleaseSelectTheme.innerHTML = "Please Select Theme";
 
 
 console.log(form);
@@ -52,12 +56,15 @@ design.addEventListener("change", (event) => {
 
     if (event.target.value === "select theme") {
 
-
-   //     for (i = 0; i < colorlabel.length; i++) {
-
+ 
 
 
-            color.style.display = "none";
+       for (i = 0; i < color.length; i++) {
+
+
+           color[i].style.display = "none";
+           pleaseSelectTheme.style.display = "block";
+           pleaseSelectTheme.selected = true;
 
 
         }
@@ -66,7 +73,7 @@ design.addEventListener("change", (event) => {
 
 
 
-  //  }
+   }
 
     else if (event.target.value === "js puns") {
 
@@ -74,15 +81,22 @@ design.addEventListener("change", (event) => {
 
         for (i = 0; i < color.length; i++) {
 
-            color.style.display = "block";
+            color.style.display = "block";  
             color[i].style.display = "none";
+            color[i].selected = false;
             var cornflowerblue = document.querySelector('option[value="cornflowerblue"]');
             var darkslategrey = document.querySelector('option[value="darkslategrey"]');
             var gold = document.querySelector('option[value="gold"]');
 
+
+            cornflowerblue.selected = true;
+            darkslategrey.selected = true;
+            gold.selected = true;
             cornflowerblue.style.display = "block";
             darkslategrey.style.display = "block";
             gold.style.display = "block";
+            pleaseSelectTheme.style.display = "none";
+
 
 
 
@@ -107,13 +121,20 @@ design.addEventListener("change", (event) => {
 
             color.style.display = "block";
             color[i].style.display = "none";
+            color[i].selected = false;
             var tomato = document.querySelector('option[value="tomato"]');
             var steelblue = document.querySelector('option[value="steelblue"]');
             var dimgrey = document.querySelector('option[value="dimgrey"]');
 
+
+            tomato.selected = true;
+            steelblue.selected = true;
+            dimgrey.selected = true;
+
             tomato.style.display = "block";
             steelblue.style.display = "block";
             dimgrey.style.display = "block";
+            pleaseSelectTheme.style.display = "none";
 
 
 
@@ -150,10 +171,13 @@ activity.addEventListener("change", (e) => {
         activityLabel.textContent = "Total: " + totalactivityCost + " $"
         var datadayandtime = activityclicked.getAttribute(`data-day-and-time`);
         //console.log(datadayandtime + "date and time");
-    
+
 
     }
 
+
+
+    
     for (i = 0; i < activityinput.length; i++) {
 
       
@@ -169,9 +193,10 @@ activity.addEventListener("change", (e) => {
 
             }
 
-            else {
+            else if (activityclicked.checked = false)
+            {
                 activityinput[i].disabled = false;
-                console.log("test");
+                console.log("not checked");
 
             }
 
@@ -333,11 +358,11 @@ const validatecardnumber = () => {
 
     if (cardnumber.value === "") {
         console.log("no value entered");
-      //  creditcardmissingtext.innerHTML = "No data entered";
+        creditcardmissingtext.textContent = "No data entered";
 
     }
     else if (cardnumberInput.length > 16) {
-        //creditcardmissingtext.innerHTML = "Enter a number between 13-16 characters";
+        creditcardmissingtext.textContent = "Enter a number between 13-16 characters";
         console.log("more than 16");
 
 
@@ -347,16 +372,19 @@ const validatecardnumber = () => {
     }
 
     else if (cardnumberInput.length < 13) {
-
-      //  creditcardmissingtext.innerHTML = "Enter a number more than 13 digits";
+    
+      creditcardmissingtext.textContent = "Enter a number more than 13 digits";
         console.log("less than 13");
     }
 
     else if (cardnumberInput.length >= 13 || cardnumberInput.length <= 16) {
 
+        creditcardmissingtext.textContent = "Success";
+
         console.log("Success");
 
-     //   cardnumber.display.borderColor = "green";
+      var ccNum =  document.getElementById("cc-num");
+            ccNum.style.borderColor = "green";
 
 
     }
