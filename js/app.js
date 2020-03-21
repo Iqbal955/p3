@@ -1,5 +1,5 @@
 document.getElementById("name").focus();
-var name = document.getElementById("name");
+var email = document.getElementById("email");
 var other = document.getElementById("other-title");
 var selectTheme = document.getElementById("selectTheme");
 var color = document.getElementById("color");
@@ -7,12 +7,23 @@ var userpayment = document.getElementById("user-payment");
 var colorlabel = document.getElementById("colors-js-puns");
 var design = document.getElementById("design");
 console.log(other);
+var activityform = document.querySelector('.activities legend');
 var activity = document.querySelector(".activities");
 var activityinput = document.querySelectorAll(".activities input");
 var creditcardform = document.getElementById("credit-card");
 var paypalform = document.getElementById("paypal");
 var bitcoinform = document.getElementById("bitcoin");
 var form = document.querySelector("form");
+var cardnumber = document.getElementById("cc-num");
+var cardmonth = document.getElementById("");
+var cardzip = document.getElementById("zip");
+var cvv = document.getElementById("cvv");
+var creditcard = document.querySelector('option[value="credit card"]');
+var creditcardfield = document.querySelector(".col-6 col");
+//creditcardfield.appendChild(document.createElement('p'));
+//creditcardfield.appendChild(creditcardmissingtext);
+
+
 console.log(form);
 
 creditcardform.style.display = "none";
@@ -195,7 +206,7 @@ paymentelement.addEventListener("click", (e) =>
         if (e.target.value == "credit card") {
 
 
-            var creditcard = document.querySelector('option[value="credit card"]');
+            
             creditcardform.style.display = "block";
             bitcoin.style.display = "none";
             paypalform.style.display = "none";
@@ -248,33 +259,114 @@ paymentelement.addEventListener("click", (e) =>
 
 const nameValidator = () => {
 
-    var nameInput = name.value;
+    var nameInput = document.getElementById("name").value;
   
     if (nameInput.length > 0) {
 
-        name.style.borderColor = "white";
+        document.getElementById("name").style.borderColor = "white";
 
 
     }
 
     else
     {
-        name.style.borderColor = "red";
+        document.getElementById("name").style.borderColor = "red";
 
     }
 
 
 }
 
-const emailValidtor = () => {
+const emailValidator = () => {
 
-    var emailInput = email.value;
-    
- 
+
+    var emailInput = document.getElementById("mail").value;
+    console.log(emailInput);
+    var emailindex = emailInput.indexOf("@");
+    var emaillastindex = emailInput.lastIndexOf(".");
+
+    console.log(emailindex + "this is the index");
+    console.log(emaillastindex + "this is after index");
+
+    if (emailindex > 1 && emaillastindex > emailindex + 1) {
+        document.getElementById("mail").style.borderColor = "yellow";
+        return true;
+    }
+
+    else {
+        document.getElementById("mail").style.borderColor = "red";
+        return false;
+
+    }
+
+}
+
+
+
+const activityValidator = () =>
+{
+
+
+    for (i = 0; i < activityinput.length; i++)
+    {
+        if (activityinput[i].checked)
+        {
+            activityform.style.borderColor = "green";
+            console.log("white");
+            return true;
+        }
+
+       
+            activityform.style.borderColor = "red";
+            return false;
+
+        }
+
 
 
 }
 
+
+const validatecardnumber = () => {
+
+    const cardnumberInput = cardnumber.value;
+
+    if (cardnumber.value === "") {
+        console.log("no value entered");
+      //  creditcardmissingtext.innerHTML = "No data entered";
+
+    }
+    else if (cardnumberInput.length > 16) {
+        //creditcardmissingtext.innerHTML = "Enter a number between 13-16 characters";
+        console.log("more than 16");
+
+
+
+
+
+    }
+
+    else if (cardnumberInput.length < 13) {
+
+      //  creditcardmissingtext.innerHTML = "Enter a number more than 13 digits";
+        console.log("less than 13");
+    }
+
+    else if (cardnumberInput.length >= 13 || cardnumberInput.length <= 16) {
+
+        console.log("Success");
+
+     //   cardnumber.display.borderColor = "green";
+
+
+    }
+        // const vaildUserInputEmail = (/^[A-za-z0-9]+@+[A-za-z0-9]+\.[A-za-z]{2,3}$/).test(userInputEmail.value);
+        // return vaildUserInputEmail;
+    
+}
+
+
+hideOther();
 
 form.addEventListener("submit", (e) => {
 
@@ -282,6 +374,9 @@ form.addEventListener("submit", (e) => {
     console.log("works");
     e.preventDefault();
     nameValidator();
+    emailValidator();
+    activityValidator();
+    validatecardnumber();
    
 
 
