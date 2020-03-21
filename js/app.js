@@ -29,8 +29,8 @@ pleaseSelectTheme.innerHTML = "Please Select Theme";
 
 
 console.log(form);
-
-creditcardform.style.display = "none";
+creditcard.selected = true;
+//creditcardform.style.display = "none";
 bitcoinform.style.display = "none";
 paypalform.style.display = "none";
 
