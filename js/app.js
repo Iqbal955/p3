@@ -20,6 +20,7 @@ var cardnumber = document.getElementById("cc-num");
 var cardmonth = document.getElementById("");
 var cardzip = document.getElementById("zip");
 var cvv = document.getElementById("cvv");
+
 var creditcard = document.querySelector('option[value="credit card"]');
 var creditcardfield = document.querySelector(".col-6");
 var creditcardmissingtext = document.createElement('p');
@@ -453,13 +454,16 @@ const cardnumerzipvalidtor = () => {
 }
 
 var cvvMissingText = document.createElement("label");
-cvv.appendChild(cvvMissingText);
+
+var cvvparent = cvv.parentNode.insertBefore(cvvMissingText, cvv.nextSibling);
+console.log(cvvparent);
 
 
     
 const hideCVV = () => {
 
     var cvvInput = cvv.value;
+    console.log(cvvInput + "this is the cvvInput");
 
     if (cvvInput.length == 3) {
 
@@ -475,7 +479,8 @@ const hideCVV = () => {
         console.log("not 3");
         cvvMissingText.textContent = "Please enter a valid 3 digit number";
         cvvMissingText.style.color = "red";
-        e.preventDefault();
+        return false;
+      
         
 
 
@@ -484,10 +489,11 @@ const hideCVV = () => {
 }
 
 
+
 hideOther();
 const masterValidator = () => {
     
-    if (nameValidator == "True" && emailValidator == "True" && activityValidator == "True" && validatecardnumber == "True" && cardnumber == "True" && hideCVV == "True") {
+    if (nameValidator == "true" && emailValidator == "true" && activityValidator == "true" && validatecardnumber == "true" && cardnumber == "true" && hideCVV == "true") {
 
         nameValidator();
         emailValidator();
@@ -500,8 +506,7 @@ const masterValidator = () => {
 
     }
 
-    else if (nameValidator == "false" || emailValidator == "false" || activityValidator == "False" || validatecardnumber == "False" || cardnumber == "False" || hideCVV == "False") {
-
+    else if (nameValidator == "false" || emailValidator == "false" || activityValidator == "false" || validatecardnumber == "false" || cardnumber == "false" || hideCVV == "false") {
         nameValidator();
         emailValidator();
         activityValidator();
