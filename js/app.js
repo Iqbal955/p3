@@ -522,7 +522,7 @@ const masterValidator = () => {
 form.addEventListener("submit", (e) => {
 
 
-    if (masterValidator == "false") {
+    if (masterValidator == "true") {
 
         masterValidator();
     }
