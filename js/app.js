@@ -466,6 +466,7 @@ const hideCVV = () => {
         console.log("3!!");
         cvvMissingText.textContent = "OK";
         cvvMissingText.style.color = "green";
+        return true;
 
 
     }
@@ -484,17 +485,53 @@ const hideCVV = () => {
 
 
 hideOther();
+const masterValidator = () => {
+    
+    if (nameValidator == "True" && emailValidator == "True" && activityValidator == "True" && validatecardnumber == "True" && cardnumber == "True" && hideCVV == "True") {
 
+        nameValidator();
+        emailValidator();
+        activityValidator();
+        validatecardnumber();
+        cardnumerzipvalidtor();
+        hideCVV();
+
+        return true;
+
+    }
+
+    else if (nameValidator == "false" || emailValidator == "false" || activityValidator == "False" || validatecardnumber == "False" || cardnumber == "False" || hideCVV == "False") {
+
+        nameValidator();
+        emailValidator();
+        activityValidator();
+        validatecardnumber();
+        cardnumerzipvalidtor();
+        hideCVV();
+
+        return false;
+
+
+    }
+}
 form.addEventListener("submit", (e) => {
 
 
+    if (masterValidator == "false") {
 
-    nameValidator();
-    emailValidator();
-    activityValidator();
-    validatecardnumber();
-    cardnumerzipvalidtor();
-    hideCVV();
+        masterValidator();
+    }
+
+    else if (masterValidator == "false") {
+
+        e.preventDefault
+        masterValidator();
+
+    }
+
+
+
+    }
 
 
 
