@@ -1,6 +1,8 @@
 document.getElementById("name").focus();
 var email = document.getElementById("email");
 var other = document.getElementById("other-title");
+
+var jobtitle = document.getElementById("title");
 var selectTheme = document.getElementById("selectTheme");
 var color = document.getElementById("color");
 var userpayment = document.getElementById("user-payment");
@@ -41,6 +43,16 @@ function hideOther()
     other.style.display = "none";
 }
 
+jobtitle.addEventListener("change", (event) => {
+
+    if (event.target.value === "other") {
+
+
+        other.style.display = "block";
+
+        console.log("other pressed");
+    }
+});
 
 function hideSelectTheme()
 {
@@ -161,16 +173,26 @@ activity.addEventListener("change", (e) => {
     var activitycost = activityclicked.getAttribute("data-cost");
    var activitycostint = parseInt(activitycost);
 
-
+    var datadayandtime = activityclicked.getAttribute(`data-day-and-time`);
 
     if (activityclicked.checked) {
 
 
         totalactivityCost += activitycostint;
         console.log(totalactivityCost);
-        activityLabel.textContent = "Total: " + totalactivityCost + " $"
-        var datadayandtime = activityclicked.getAttribute(`data-day-and-time`);
+        activityLabel.textContent = "Total: " + "$" + totalactivityCost;
+
         //console.log(datadayandtime + "date and time");
+
+
+    }
+    else {
+
+
+
+        totalactivityCost -= activitycostint;
+        console.log(totalactivityCost);
+        activityLabel.textContent = "Total: " + "$" + totalactivityCost;
 
 
     }
@@ -193,7 +215,7 @@ activity.addEventListener("change", (e) => {
 
             }
 
-            else if (activityclicked.checked = false)
+            else 
             {
                 activityinput[i].disabled = false;
                 console.log("not checked");
@@ -327,7 +349,8 @@ const emailValidator = () => {
 }
 
 
-
+activityerrormessage = document.createElement("label");
+activityform.appendChild(activityerrormessage);
 const activityValidator = () =>
 {
 
@@ -338,11 +361,16 @@ const activityValidator = () =>
         {
             activityform.style.borderColor = "green";
             console.log("white");
+            activityerrormessage.textContent = "";
             return true;
         }
 
        
-            activityform.style.borderColor = "red";
+        activityform.style.borderColor = "red";
+       
+        activityerrormessage.textContent = "Please choose atleast one activity";
+        activityerrormessage.style.color = "red";
+       
             return false;
 
         }
@@ -358,12 +386,13 @@ const validatecardnumber = () => {
 
     if (cardnumber.value === "") {
         console.log("no value entered");
-        creditcardmissingtext.textContent = "No data entered";
+        creditcardmissingtext.textContent = "The credit card field cannot be empty, please use a valid credit-card";
+        creditcardmissingtext.style.color = "red";
 
     }
     else if (cardnumberInput.length > 16) {
         creditcardmissingtext.textContent = "Enter a number between 13-16 characters";
-        console.log("more than 16");
+        creditcardmissingtext.style.color = "red";
 
 
 
@@ -374,14 +403,14 @@ const validatecardnumber = () => {
     else if (cardnumberInput.length < 13) {
     
       creditcardmissingtext.textContent = "Enter a number more than 13 digits";
-        console.log("less than 13");
+        creditcardmissingtext.style.color = "red";
     }
 
     else if (cardnumberInput.length >= 13 || cardnumberInput.length <= 16) {
 
-        creditcardmissingtext.textContent = "Success";
+        creditcardmissingtext.textContent = "✓";
 
-        console.log("Success");
+        creditcardmissingtext.style.color = "green";
 
       var ccNum =  document.getElementById("cc-num");
             ccNum.style.borderColor = "green";
@@ -392,6 +421,66 @@ const validatecardnumber = () => {
         // return vaildUserInputEmail;
     
 }
+var cardnumberzipmissing = document.createElement("label");
+var cardnumberzipinput = document.querySelector(".col-3");
+cardnumberzipinput.appendChild(cardnumberzipmissing);
+
+const cardnumerzipvalidtor = () => {
+
+
+    var cardzipValue = cardzip.value;
+
+
+    if (cardzipValue.length == 5) {
+
+        cardnumberzipmissing.textContent = "OK";
+
+        cardnumberzipmissing.style.color = "green";
+
+
+    }
+
+    else {
+
+
+        cardnumberzipmissing.textContent = "Please enter a 5 digit number";
+        cardnumberzipmissing.style.color = "red";
+
+        return false;
+
+
+    }
+}
+
+var cvvMissingText = document.createElement("label");
+cvv.appendChild(cvvMissingText);
+
+
+    
+const hideCVV = () => {
+
+    var cvvInput = cvv.value;
+
+    if (cvvInput.length == 3) {
+
+        console.log("3!!");
+        cvvMissingText.textContent = "OK";
+        cvvMissingText.style.color = "green";
+
+
+    }
+
+    else {
+        console.log("not 3");
+        cvvMissingText.textContent = "Please enter a valid 3 digit number";
+        cvvMissingText.style.color = "red";
+        e.preventDefault();
+        
+
+
+    }
+
+}
 
 
 hideOther();
@@ -399,13 +488,13 @@ hideOther();
 form.addEventListener("submit", (e) => {
 
 
-    console.log("works");
-    e.preventDefault();
+
     nameValidator();
     emailValidator();
     activityValidator();
     validatecardnumber();
-   
+    cardnumerzipvalidtor();
+    hideCVV();
 
 
 
