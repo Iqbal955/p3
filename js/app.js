@@ -355,7 +355,7 @@ const activityValidator = () => {
     for (i = 0; i < activityinput.length; i++) {
         if (activityinput[i].checked) {
             activityform.style.borderColor = "green";
-            console.log("white");
+            console.log("activity chosen");
             activityerrormessage.textContent = "";
             return true;
         }
