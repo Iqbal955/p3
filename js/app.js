@@ -322,7 +322,13 @@ const nameValidator = () => {
 
 }
 
+var emailInput = document.getElementById("mail").value;
+
+
+
 const emailValidator = () => {
+
+
 
 
     var emailInput = document.getElementById("mail").value;
@@ -345,6 +351,12 @@ const emailValidator = () => {
     }
 
 }
+
+
+
+emailInput.addEventListener("keyup", emailValidator)
+
+
 
 
 activityerrormessage = document.createElement("label");
@@ -378,6 +390,8 @@ const activityValidator = () => {
 const validatecardnumber = () => {
 
     const cardnumberInput = cardnumber.value;
+
+
 
     if (cardnumber.value === "") {
         console.log("no value entered");
@@ -550,7 +564,7 @@ form.addEventListener("submit", (e) =>
     if (!hideCVV) {
 
 
-        console.log("no zip");
+        console.log("no cvv");
 
         e.preventDefault();
 
