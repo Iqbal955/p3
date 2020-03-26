@@ -314,6 +314,7 @@ const nameValidator = () => {
 
     else {
         document.getElementById("name").style.borderColor = "red";
+       
         return false;
 
     }
@@ -333,7 +334,7 @@ const emailValidator = () => {
     console.log(emaillastindex + "this is after index");
 
     if (emailindex > 1 && emaillastindex > emailindex + 1) {
-        document.getElementById("mail").style.borderColor = "yellow";
+        document.getElementById("mail").style.borderColor = "red";
         return true;
     }
 
@@ -492,51 +493,72 @@ const hideCVV = () => {
 
 
 hideOther();
-const masterValidator = () => {
-
-    if (nameValidator == "true" && emailValidator == "true" && activityValidator == "true" && validatecardnumber == "true" && cardnumber == "true" && hideCVV == "true") {
-
-        nameValidator();
-        emailValidator();
-        activityValidator();
-        validatecardnumber();
-        cardnumerzipvalidtor();
-        hideCVV();
-
-        return true;
-
-    }
-
-    else if (nameValidator == "false" || emailValidator == "false" || activityValidator == "false" || validatecardnumber == "false" || cardnumber == "false" || hideCVV == "false") {
-        nameValidator();
-        emailValidator();
-        activityValidator();
-        validatecardnumber();
-        cardnumerzipvalidtor();
-        hideCVV();
-
-        return false;
 
 
-    }
-}
 form.addEventListener("submit", (e) =>
 {
 
-
-    if (masterValidator == "true")
-    {
-
-        masterValidator();
-    }
-
-    else if (masterValidator == "false")
-    {
+    nameValidator();
+    if (!nameValidator()) {
 
         e.preventDefault();
-        masterValidator();
+        console.log("No name");
 
     }
+
+    emailValidator();
+
+    if (!emailValidator()) {
+
+        e.preventDefault();
+        console.log("No email");
+
+
+    }
+
+    activityValidator();
+
+    if (!activityValidator()) {
+
+        console.log("activity not chosen");
+        e.preventDefault();
+    }
+
+
+
+        validatecardnumber();
+
+        if (!validatecardnumber) {
+
+            console.log("no cardnumber");
+            e.preventDefault();
+
+
+    }
+
+    cardnumerzipvalidtor();
+
+
+    if (!cardnumberzipinput) {
+
+
+        console.log("no zip");
+        e.preventDefault();
+
+    }
+
+    if (!hideCVV) {
+
+
+        console.log("no zip");
+
+        e.preventDefault();
+
+
+    }
+
+
+    
 
 
 
