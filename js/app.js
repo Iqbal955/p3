@@ -1,5 +1,9 @@
-document.getElementById("name").focus();
-var email = document.getElementById("email");
+document.getElementById("name").focus(); //Focus on the name ID when the browser opens
+
+
+
+//All attributes
+var email = document.getElementById("email"); 
 var other = document.getElementById("other-title");
 
 var jobtitle = document.getElementById("title");
@@ -21,56 +25,60 @@ var cardmonth = document.getElementById("");
 var cardzip = document.getElementById("zip");
 var cvv = document.getElementById("cvv");
 
+
+// Getting the creditcard fields and creating the missing text fields
 var creditcard = document.querySelector('option[value="credit card"]');
 var creditcardfield = document.querySelector(".col-6");
 var creditcardmissingtext = document.createElement('p');
 creditcardfield.appendChild(creditcardmissingtext);
 var pleaseSelectTheme = document.createElement("option");
 color.appendChild(pleaseSelectTheme);
+
+
+
+
+//Setting the Please select theme to the selected when the page opens and setting it's inner text to Please select theme
 pleaseSelectTheme.selected = true;
 pleaseSelectTheme.innerHTML = "Please Select Theme";
 
-
-console.log(form);
+//Setting creditcard to selected
 creditcard.selected = true;
 //creditcardform.style.display = "none";
 bitcoinform.style.display = "none";
 paypalform.style.display = "none";
 
 
-
+//Targetting the other option in the HTML and hiding it
 function hideOther() {
     other.style.display = "none";
 }
 
-jobtitle.addEventListener("change", (event) => {
+jobtitle.addEventListener("change", (event) => { //adding event listener on job title 
 
-    if (event.target.value === "other") {
+    if (event.target.value === "other") { //if the value is other it is shown
 
 
         other.style.display = "block";
 
-        console.log("other pressed");
+     //   console.log("other pressed");
     }
 });
 
-function hideSelectTheme() {
+function hideSelectTheme() { 
     // selectTheme.style.display = "none";
 
 }
 
 
-design.addEventListener("change", (event) => {
-    //1Select, nothing changes, 
-    //2change, it goes to the else statement regardless
-    //3 click, it goes to the else statement regardless
+design.addEventListener("change", (event) => { //adding the eventlistener og the design 
+  
 
-    if (event.target.value === "select theme") {
+    if (event.target.value === "select theme") { //if the value is "select theme"
 
 
 
 
-        for (i = 0; i < color.length; i++) {
+        for (i = 0; i < color.length; i++) { //loops through all the colors and hides them and shows please select theme
 
 
             color[i].style.display = "none";
@@ -86,20 +94,23 @@ design.addEventListener("change", (event) => {
 
     }
 
-    else if (event.target.value === "js puns") {
+    else if (event.target.value === "js puns") { //if the value is chosen as "js puns"
 
 
 
-        for (i = 0; i < color.length; i++) {
+        for (i = 0; i < color.length; i++) { //it loops through all the colors
 
-            color.style.display = "block";
-            color[i].style.display = "none";
-            color[i].selected = false;
+            color.style.display = "block"; //displays all colors in case they were hidden before by the other function of select theme, so it doesnt return an error saying its undefined and already hidden
+            color[i].style.display = "none"; //resetting all
+            color[i].selected = false; //setting the already selected to false
+
+//selecting all options
             var cornflowerblue = document.querySelector('option[value="cornflowerblue"]');
             var darkslategrey = document.querySelector('option[value="darkslategrey"]');
             var gold = document.querySelector('option[value="gold"]');
 
 
+//setting them to true
             cornflowerblue.selected = true;
             darkslategrey.selected = true;
             gold.selected = true;
@@ -124,20 +135,22 @@ design.addEventListener("change", (event) => {
 
 
 
-    else if (event.target.value === "heart js") {
+    else if (event.target.value === "heart js") { //if the event of the event listener is heart js 
 
 
 
-        for (i = 0; i < color.length; i++) {
+        for (i = 0; i < color.length; i++) { //loops through all colors
 
-            color.style.display = "block";
-            color[i].style.display = "none";
-            color[i].selected = false;
+            color.style.display = "block"; //displays all
+            color[i].style.display = "none"; //resets all of them and thereby hides all of them
+            color[i].selected = false; //removes the selected ones
+
+//targetting the options and setting them to true
             var tomato = document.querySelector('option[value="tomato"]');
             var steelblue = document.querySelector('option[value="steelblue"]');
             var dimgrey = document.querySelector('option[value="dimgrey"]');
 
-
+//setting the selected ones to true and displaying the value and hiding please select theme
             tomato.selected = true;
             steelblue.selected = true;
             dimgrey.selected = true;
@@ -159,27 +172,29 @@ design.addEventListener("change", (event) => {
 }
 );
 
+
+//creating the activelabel if there is any errors
 var activityLabel = document.createElement("label");
 activity.appendChild(activityLabel);
 
 
-var totalactivityCost = 0;
+var totalactivityCost = 0; //setting the activity cost to 0
 
-activity.addEventListener("change", (e) => {
+activity.addEventListener("change", (e) => { //creating event listener 
 
-    var activityclicked = event.target;
+    var activityclicked = event.target; //creating an variable for the activityclicked such that it can be used
 
-    var activitycost = activityclicked.getAttribute("data-cost");
-    var activitycostint = parseInt(activitycost);
+    var activitycost = activityclicked.getAttribute("data-cost"); //getting the data-cost of the event clicked 
+    var activitycostint = parseInt(activitycost); //the intial is a string, so converting the string to an int
 
-    var datadayandtime = activityclicked.getAttribute(`data-day-and-time`);
+    var datadayandtime = activityclicked.getAttribute(`data-day-and-time`); //getting the date and time
 
-    if (activityclicked.checked) {
+    if (activityclicked.checked) { //if the event is clicked
 
 
-        totalactivityCost += activitycostint;
-        console.log(totalactivityCost);
-        activityLabel.textContent = "Total: " + "$" + totalactivityCost;
+        totalactivityCost += activitycostint; //adding the converted parseInt value to the total activitycost
+        //console.log(totalactivityCost);  logging it out
+        activityLabel.textContent = "Total: " + "$" + totalactivityCost; //the label displays the total
 
         //console.log(datadayandtime + "date and time");
 
@@ -188,9 +203,9 @@ activity.addEventListener("change", (e) => {
     else {
 
 
-
-        totalactivityCost -= activitycostint;
-        console.log(totalactivityCost);
+//else, that is it is unchecked  (no need for else if)
+        totalactivityCost -= activitycostint; //subtract it
+ //       console.log(totalactivityCost);
         activityLabel.textContent = "Total: " + "$" + totalactivityCost;
 
 
@@ -199,19 +214,20 @@ activity.addEventListener("change", (e) => {
 
 
 
-    for (i = 0; i < activityinput.length; i++) {
+    for (i = 0; i < activityinput.length; i++) { //runs through all activityInputs
 
 
-        var datadayandtimeI = activityinput[i].getAttribute(`data-day-and-time`);
+        var datadayandtimeI = activityinput[i].getAttribute(`data-day-and-time`); //gets the attributes day and time
 
-        if (datadayandtime === datadayandtimeI && activityclicked !== activityinput[i]) {
+        if (datadayandtime === datadayandtimeI && activityclicked !== activityinput[i]) { 
+//if day and time of the clicked day and time, is equal to any of the other activityInputs in the list, and the it is not the one that is clicked
 
-            console.log(activityinput[i]);
+      //      console.log(activityinput[i]);
 
-            if (activityclicked.checked) {
+            if (activityclicked.checked) { //and if the the activity is clicked
 
-                activityinput[i].disabled = true;
-
+                activityinput[i].disabled = true; //
+ 
             }
 
             else {
@@ -322,7 +338,7 @@ const nameValidator = () => {
 
 }
 
-var emailInput = document.getElementById("mail").value;
+var emailKeyUp = document.getElementById("mail");
 
 
 
@@ -340,7 +356,7 @@ const emailValidator = () => {
     console.log(emaillastindex + "this is after index");
 
     if (emailindex > 1 && emaillastindex > emailindex + 1) {
-        document.getElementById("mail").style.borderColor = "red";
+        document.getElementById("mail").style.borderColor = "green";
         return true;
     }
 
@@ -354,7 +370,7 @@ const emailValidator = () => {
 
 
 
-emailInput.addEventListener("keyup", emailValidator)
+emailKeyUp.addEventListener('keyup', emailValidator);
 
 
 
@@ -564,7 +580,7 @@ form.addEventListener("submit", (e) =>
     if (!hideCVV) {
 
 
-        console.log("no cvv");
+        console.log("no zip");
 
         e.preventDefault();
 
