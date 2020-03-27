@@ -2,7 +2,7 @@ document.getElementById("name").focus(); //Focus on the name ID when the browser
 
 
 
-//All attributes
+//All variables from the DOM
 var email = document.getElementById("email"); 
 var other = document.getElementById("other-title");
 
@@ -226,13 +226,13 @@ activity.addEventListener("change", (e) => { //creating event listener
 
             if (activityclicked.checked) { //and if the the activity is clicked
 
-                activityinput[i].disabled = true; //
+                activityinput[i].disabled = true; //setting all of the activity to disabled that are not in alignment with the if statement
  
             }
 
-            else {
+            else { //else it iremoves the disabled fields
                 activityinput[i].disabled = false;
-                console.log("not checked");
+              //  console.log("not checked");
 
             }
 
@@ -250,118 +250,102 @@ activity.addEventListener("change", (e) => { //creating event listener
 
 
 );
-
+//the payment varibales and the select method
 
 var paymentelement = document.getElementById("payment");
 var selectpayment = document.querySelector('option[value="select method"]')
-console.log(selectpayment);
+//console.log(selectpayment);
 
 
-paymentelement.addEventListener("click", (e) => {
+paymentelement.addEventListener("click", (e) => { //adding an event listener to the paymentelement
     for (i = 0; i < paymentelement.length; i++) {
-        selectpayment.style.display = "none";
+        selectpayment.style.display = "none"; //hiding all if select method is chosen
 
 
 
-        if (e.target.value == "credit card") {
+        if (e.target.value == "credit card") { //if the e.target.value == credit card
 
 
 
-            creditcardform.style.display = "block";
-            bitcoin.style.display = "none";
-            paypalform.style.display = "none";
+            creditcardform.style.display = "block"; //display the creditcard form
+            bitcoin.style.display = "none"; //hide the bitcoin
+            paypalform.style.display = "none"; //hide the paypal
 
 
             //       creditcard.style.display = "block";
 
         }
 
-        else if (e.target.value == "paypal") {
+        else if (e.target.value == "paypal") { //if the e.target.value == to option paypal
 
 
-            paypalform.style.display = "block";
-            bitcoin.style.display = "none";
-            creditcardform.style.display = "none";
+            paypalform.style.display = "block"; //display the paypalform
+            bitcoin.style.display = "none"; //hide the bitcoin
+            creditcardform.style.display = "none"; //hide the creditcardfomr
 
 
         }
-        else if (e.target.value == "bitcoin") {
+        else if (e.target.value == "bitcoin") { //if target value is bitcoin
 
-            bitcoin.style.display = "block";
-            paypalform.style.display = "none";
-            creditcardform.style.display = "none";
+            bitcoin.style.display = "block"; //show bitcoin
+            paypalform.style.display = "none"; //hide paypal
+            creditcardform.style.display = "none"; //hide creditcard
 
         }
 
 
 
-        // if (e.target.value === "select method") {
-        //    paymentelement.style.display == none;
-
-
-        // }
-
-        //  for (i = 0; i < paymentelement.length; i++) {
-
-
-        // console.log(paymentelement[i])
-
-
-
-
-
-        //}
 
     }
 
 });
 
 
-const nameValidator = () => {
+const nameValidator = () => { //function of name validator
 
-    var nameInput = document.getElementById("name").value;
+    var nameInput = document.getElementById("name").value; //gets the user value og the input
 
-    if (nameInput.length > 0) {
+    if (nameInput.length > 0) { //if the value is more than 0
 
-        document.getElementById("name").style.borderColor = "green";
-        return true;
+        document.getElementById("name").style.borderColor = "green"; //set it to green
+        return true; //return true
 
     }
 
     else {
-        document.getElementById("name").style.borderColor = "red";
+        document.getElementById("name").style.borderColor = "red"; //else set it to red
        
-        return false;
+        return false; // return false
 
     }
 
 
 }
 
-var emailKeyUp = document.getElementById("mail");
+var emailKeyUp = document.getElementById("mail"); //get id of email 
 
 
 
-const emailValidator = () => {
+const emailValidator = () => { //function of emailvalidator
 
 
 
 
-    var emailInput = document.getElementById("mail").value;
-    console.log(emailInput);
-    var emailindex = emailInput.indexOf("@");
-    var emaillastindex = emailInput.lastIndexOf(".");
+    var emailInput = document.getElementById("mail").value; //getting value of user on the mail input
+   // console.log(emailInput);
+    var emailindex = emailInput.indexOf("@"); //saves the indexOf i.e before @
+    var emaillastindex = emailInput.lastIndexOf("."); //saves the last bit after the .
 
-    console.log(emailindex + "this is the index");
-    console.log(emaillastindex + "this is after index");
+   // console.log(emailindex + "this is the index");
+  //  console.log(emaillastindex + "this is after index");
 
-    if (emailindex > 1 && emaillastindex > emailindex + 1) {
-        document.getElementById("mail").style.borderColor = "green";
+    if (emailindex > 1 && emaillastindex > emailindex + 1) { //if the value of the email index is more than 1, and emaillast
+        document.getElementById("mail").style.borderColor = "green"; //set border to green
         return true;
     }
 
     else {
-        document.getElementById("mail").style.borderColor = "red";
+        document.getElementById("mail").style.borderColor = "red"; // else set style border to green
         return false;
 
     }
@@ -370,31 +354,31 @@ const emailValidator = () => {
 
 
 
-emailKeyUp.addEventListener('keyup', emailValidator);
+emailKeyUp.addEventListener('keyup', emailValidator); //creating the email validator and listening for keyups
+ 
 
 
 
+activityerrormessage = document.createElement("label"); //creating the activity error message
+activityform.appendChild(activityerrormessage); //appending it
+const activityValidator = () => { //creating function for the activityvalidtaor
 
-activityerrormessage = document.createElement("label");
-activityform.appendChild(activityerrormessage);
-const activityValidator = () => {
 
-
-    for (i = 0; i < activityinput.length; i++) {
-        if (activityinput[i].checked) {
+    for (i = 0; i < activityinput.length; i++) { //goes through all activityinputs
+        if (activityinput[i].checked) { //if anyone of them is checked set it to green
             activityform.style.borderColor = "green";
-            console.log("activity chosen");
-            activityerrormessage.textContent = "";
-            return true;
+      //      console.log("activity chosen");
+            activityerrormessage.textContent = ""; //set the error message to empty
+            return true; //returns true
         }
 
 
-        activityform.style.borderColor = "red";
+        activityform.style.borderColor = "red"; //if it returns true, it will skip this code, if not it will go here no need for else
 
-        activityerrormessage.textContent = "Please choose atleast one activity";
-        activityerrormessage.style.color = "red";
+        activityerrormessage.textContent = "Please choose atleast one activity"; //sets error message
+        activityerrormessage.style.color = "red"; //sets the color to red
 
-        return false;
+        return false; //returns false
 
     }
 
@@ -403,20 +387,22 @@ const activityValidator = () => {
 }
 
 
-const validatecardnumber = () => {
+const validatecardnumber = () => { 
 
-    const cardnumberInput = cardnumber.value;
+    const cardnumberInput = cardnumber.value; //getting the user value
 
 
 
-    if (cardnumber.value === "") {
-        console.log("no value entered");
+    if (cardnumber.value === "") { //if there is no input the error message displays
+     //   console.log("no value entered");
         creditcardmissingtext.textContent = "The credit card field cannot be empty, please use a valid credit-card";
         creditcardmissingtext.style.color = "red";
 
         return false;
-
+//returns false
     }
+
+//if it is more than 16
     else if (cardnumberInput.length > 16) {
         creditcardmissingtext.textContent = "Enter a number between 13-16 characters";
         creditcardmissingtext.style.color = "red";
@@ -428,6 +414,7 @@ const validatecardnumber = () => {
 
 
     }
+//if it is less than 13
 
     else if (cardnumberInput.length < 13) {
 
@@ -438,6 +425,7 @@ const validatecardnumber = () => {
 
     else if (cardnumberInput.length >= 13 || cardnumberInput.length <= 16) {
 
+//if between 13 and 16
         creditcardmissingtext.textContent = "✓";
 
         creditcardmissingtext.style.color = "green";
@@ -453,17 +441,20 @@ const validatecardnumber = () => {
     // return vaildUserInputEmail;
 
 }
+
+//creating the zip missing label
 var cardnumberzipmissing = document.createElement("label");
 var cardnumberzipinput = document.querySelector(".col-3");
 cardnumberzipinput.appendChild(cardnumberzipmissing);
 
 const cardnumerzipvalidtor = () => {
+//creating the cardnumber zip function
 
 
-    var cardzipValue = cardzip.value;
+    var cardzipValue = cardzip.value; //getting user input
 
 
-    if (cardzipValue.length == 5) {
+    if (cardzipValue.length == 5) { //if equal to 5 its ok
 
         cardnumberzipmissing.textContent = "OK";
 
@@ -474,7 +465,7 @@ const cardnumerzipvalidtor = () => {
     }
 
     else {
-
+//enter 5 digit number
 
         cardnumberzipmissing.textContent = "Please enter a 5 digit number";
         cardnumberzipmissing.style.color = "red";
@@ -485,21 +476,22 @@ const cardnumerzipvalidtor = () => {
     }
 }
 
+//creates errortext for cvv
 var cvvMissingText = document.createElement("label");
 
 var cvvparent = cvv.parentNode.insertBefore(cvvMissingText, cvv.nextSibling);
 console.log(cvvparent);
 
 
-
+//should be called cvv validator
 const hideCVV = () => {
 
-    var cvvInput = cvv.value;
-    console.log(cvvInput + "this is the cvvInput");
+    var cvvInput = cvv.value; //gets cvv value from the user
+    //console.log(cvvInput + "this is the cvvInput");
 
-    if (cvvInput.length == 3) {
+    if (cvvInput.length == 3) { //if the value is 3
 
-        console.log("3!!");
+       // console.log("3!!");
         cvvMissingText.textContent = "OK";
         cvvMissingText.style.color = "green";
         return true;
@@ -507,7 +499,7 @@ const hideCVV = () => {
 
     }
 
-    else {
+    else { //if it is not 3
         console.log("not 3");
         cvvMissingText.textContent = "Please enter a valid 3 digit number";
         cvvMissingText.style.color = "red";
@@ -522,12 +514,13 @@ const hideCVV = () => {
 
 
 
-hideOther();
+hideOther(); //the hide other  function is called
 
 
 form.addEventListener("submit", (e) =>
 {
-
+//the event listener listens on each function, it calls it first to check it and read through it, if there is anywhere where it returns
+//false, the !function() is ran and the e.preventDefault is then run
     nameValidator();
     if (!nameValidator()) {
 
