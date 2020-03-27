@@ -5,7 +5,7 @@ document.getElementById("name").focus(); //Focus on the name ID when the browser
 //All variables from the DOM
 var email = document.getElementById("email");
 var other = document.getElementById("other-title");
-
+var colorLabelHeadline = document.getElementById("colorlabel");
 var jobtitle = document.getElementById("title");
 var selectTheme = document.getElementById("selectTheme");
 var color = document.getElementById("color");
@@ -50,8 +50,10 @@ paypalform.style.display = "none";
 
 
 
-color.style.display = "none"; //hiding the color until option is chosen for exceeds expectations
+color.style.display = "none"; //startes of hiding the color for exceeds expectations
 //Targetting the other option in the HTML and hiding it
+
+colorLabelHeadline.style.display = "none";
 function hideOther() {
     other.style.display = "none";
 }
@@ -84,7 +86,7 @@ design.addEventListener("change", (event) => { //adding the eventlistener og the
 
         for (i = 0; i < color.length; i++) { //loops through all the colors and hides them and shows please select theme
 
-
+          
             color[i].style.display = "none";
             pleaseSelectTheme.style.display = "block";
             pleaseSelectTheme.selected = true;
@@ -105,7 +107,7 @@ design.addEventListener("change", (event) => { //adding the eventlistener og the
 
 
         for (i = 0; i < color.length; i++) { //it loops through all the colors
-
+            colorLabelHeadline.style.display = "block";
             color.style.display = "block"; //displays all colors in case they were hidden before by the other function of select theme, so it doesnt return an error saying its undefined and already hidden
             color[i].style.display = "none"; //resetting all
             color[i].selected = false; //setting the already selected to false
@@ -146,7 +148,7 @@ design.addEventListener("change", (event) => { //adding the eventlistener og the
 
 
         for (i = 0; i < color.length; i++) { //loops through all colors
-
+            colorLabelHeadline.style.display = "block";
             color.style.display = "block"; //displays all
             color[i].style.display = "none"; //resets all of them and thereby hides all of them
             color[i].selected = false; //removes the selected ones
