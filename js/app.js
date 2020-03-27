@@ -581,7 +581,7 @@ form.addEventListener("submit", (e) => {
         e.preventDefault();
 
     }
-
+    hideCVV();
     if (!hideCVV) {
 
 
