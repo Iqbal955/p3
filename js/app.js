@@ -3,7 +3,7 @@ document.getElementById("name").focus(); //Focus on the name ID when the browser
 
 
 //All variables from the DOM
-var email = document.getElementById("email"); 
+var email = document.getElementById("email");
 var other = document.getElementById("other-title");
 
 var jobtitle = document.getElementById("title");
@@ -48,6 +48,9 @@ bitcoinform.style.display = "none";
 paypalform.style.display = "none";
 
 
+
+
+color.style.display = "none"; //hiding the color until option is chosen for exceeds expectations
 //Targetting the other option in the HTML and hiding it
 function hideOther() {
     other.style.display = "none";
@@ -60,18 +63,19 @@ jobtitle.addEventListener("change", (event) => { //adding event listener on job 
 
         other.style.display = "block";
 
-     //   console.log("other pressed");
+        //   console.log("other pressed");
     }
 });
 
-function hideSelectTheme() { 
+function hideSelectTheme() {
     // selectTheme.style.display = "none";
 
 }
 
 
+
 design.addEventListener("change", (event) => { //adding the eventlistener og the design 
-  
+
 
     if (event.target.value === "select theme") { //if the value is "select theme"
 
@@ -94,6 +98,8 @@ design.addEventListener("change", (event) => { //adding the eventlistener og the
 
     }
 
+    
+
     else if (event.target.value === "js puns") { //if the value is chosen as "js puns"
 
 
@@ -104,13 +110,13 @@ design.addEventListener("change", (event) => { //adding the eventlistener og the
             color[i].style.display = "none"; //resetting all
             color[i].selected = false; //setting the already selected to false
 
-//selecting all options
+            //selecting all options
             var cornflowerblue = document.querySelector('option[value="cornflowerblue"]');
             var darkslategrey = document.querySelector('option[value="darkslategrey"]');
             var gold = document.querySelector('option[value="gold"]');
 
 
-//setting them to true
+            //setting them to true
             cornflowerblue.selected = true;
             darkslategrey.selected = true;
             gold.selected = true;
@@ -145,12 +151,12 @@ design.addEventListener("change", (event) => { //adding the eventlistener og the
             color[i].style.display = "none"; //resets all of them and thereby hides all of them
             color[i].selected = false; //removes the selected ones
 
-//targetting the options and setting them to true
+            //targetting the options and setting them to true
             var tomato = document.querySelector('option[value="tomato"]');
             var steelblue = document.querySelector('option[value="steelblue"]');
             var dimgrey = document.querySelector('option[value="dimgrey"]');
 
-//setting the selected ones to true and displaying the value and hiding please select theme
+            //setting the selected ones to true and displaying the value and hiding please select theme
             tomato.selected = true;
             steelblue.selected = true;
             dimgrey.selected = true;
@@ -169,7 +175,12 @@ design.addEventListener("change", (event) => { //adding the eventlistener og the
 
         }
     }
+
+
+
 }
+
+
 );
 
 
@@ -203,9 +214,9 @@ activity.addEventListener("change", (e) => { //creating event listener
     else {
 
 
-//else, that is it is unchecked  (no need for else if)
+        //else, that is it is unchecked  (no need for else if)
         totalactivityCost -= activitycostint; //subtract it
- //       console.log(totalactivityCost);
+        //       console.log(totalactivityCost);
         activityLabel.textContent = "Total: " + "$" + totalactivityCost;
 
 
@@ -219,20 +230,20 @@ activity.addEventListener("change", (e) => { //creating event listener
 
         var datadayandtimeI = activityinput[i].getAttribute(`data-day-and-time`); //gets the attributes day and time
 
-        if (datadayandtime === datadayandtimeI && activityclicked !== activityinput[i]) { 
-//if day and time of the clicked day and time, is equal to any of the other activityInputs in the list, and the it is not the one that is clicked
+        if (datadayandtime === datadayandtimeI && activityclicked !== activityinput[i]) {
+            //if day and time of the clicked day and time, is equal to any of the other activityInputs in the list, and the it is not the one that is clicked
 
-      //      console.log(activityinput[i]);
+            //      console.log(activityinput[i]);
 
             if (activityclicked.checked) { //and if the the activity is clicked
 
                 activityinput[i].disabled = true; //setting all of the activity to disabled that are not in alignment with the if statement
- 
+
             }
 
             else { //else it iremoves the disabled fields
                 activityinput[i].disabled = false;
-              //  console.log("not checked");
+                //  console.log("not checked");
 
             }
 
@@ -314,7 +325,7 @@ const nameValidator = () => { //function of name validator
 
     else {
         document.getElementById("name").style.borderColor = "red"; //else set it to red
-       
+
         return false; // return false
 
     }
@@ -332,12 +343,12 @@ const emailValidator = () => { //function of emailvalidator
 
 
     var emailInput = document.getElementById("mail").value; //getting value of user on the mail input
-   // console.log(emailInput);
+    // console.log(emailInput);
     var emailindex = emailInput.indexOf("@"); //saves the indexOf i.e before @
     var emaillastindex = emailInput.lastIndexOf("."); //saves the last bit after the .
 
-   // console.log(emailindex + "this is the index");
-  //  console.log(emaillastindex + "this is after index");
+    // console.log(emailindex + "this is the index");
+    //  console.log(emaillastindex + "this is after index");
 
     if (emailindex > 1 && emaillastindex > emailindex + 1) { //if the value of the email index is more than 1, and emaillast
         document.getElementById("mail").style.borderColor = "green"; //set border to green
@@ -355,7 +366,7 @@ const emailValidator = () => { //function of emailvalidator
 
 
 emailKeyUp.addEventListener('keyup', emailValidator); //creating the email validator and listening for keyups
- 
+
 
 
 
@@ -367,7 +378,7 @@ const activityValidator = () => { //creating function for the activityvalidtaor
     for (i = 0; i < activityinput.length; i++) { //goes through all activityinputs
         if (activityinput[i].checked) { //if anyone of them is checked set it to green
             activityform.style.borderColor = "green";
-      //      console.log("activity chosen");
+            //      console.log("activity chosen");
             activityerrormessage.textContent = ""; //set the error message to empty
             return true; //returns true
         }
@@ -387,22 +398,22 @@ const activityValidator = () => { //creating function for the activityvalidtaor
 }
 
 
-const validatecardnumber = () => { 
+const validatecardnumber = () => {
 
     const cardnumberInput = cardnumber.value; //getting the user value
 
 
 
     if (cardnumber.value === "") { //if there is no input the error message displays
-     //   console.log("no value entered");
+        //   console.log("no value entered");
         creditcardmissingtext.textContent = "The credit card field cannot be empty, please use a valid credit-card";
         creditcardmissingtext.style.color = "red";
 
         return false;
-//returns false
+        //returns false
     }
 
-//if it is more than 16
+    //if it is more than 16
     else if (cardnumberInput.length > 16) {
         creditcardmissingtext.textContent = "Enter a number between 13-16 characters";
         creditcardmissingtext.style.color = "red";
@@ -414,7 +425,7 @@ const validatecardnumber = () => {
 
 
     }
-//if it is less than 13
+    //if it is less than 13
 
     else if (cardnumberInput.length < 13) {
 
@@ -425,7 +436,7 @@ const validatecardnumber = () => {
 
     else if (cardnumberInput.length >= 13 || cardnumberInput.length <= 16) {
 
-//if between 13 and 16
+        //if between 13 and 16
         creditcardmissingtext.textContent = "✓";
 
         creditcardmissingtext.style.color = "green";
@@ -448,7 +459,7 @@ var cardnumberzipinput = document.querySelector(".col-3");
 cardnumberzipinput.appendChild(cardnumberzipmissing);
 
 const cardnumerzipvalidtor = () => {
-//creating the cardnumber zip function
+    //creating the cardnumber zip function
 
 
     var cardzipValue = cardzip.value; //getting user input
@@ -465,7 +476,7 @@ const cardnumerzipvalidtor = () => {
     }
 
     else {
-//enter 5 digit number
+        //enter 5 digit number
 
         cardnumberzipmissing.textContent = "Please enter a 5 digit number";
         cardnumberzipmissing.style.color = "red";
@@ -491,7 +502,7 @@ const hideCVV = () => {
 
     if (cvvInput.length == 3) { //if the value is 3
 
-       // console.log("3!!");
+        // console.log("3!!");
         cvvMissingText.textContent = "OK";
         cvvMissingText.style.color = "green";
         return true;
@@ -517,10 +528,9 @@ const hideCVV = () => {
 hideOther(); //the hide other  function is called
 
 
-form.addEventListener("submit", (e) =>
-{
-//the event listener listens on each function, it calls it first to check it and read through it, if there is anywhere where it returns
-//false, the !function() is ran and the e.preventDefault is then run
+form.addEventListener("submit", (e) => {
+    //the event listener listens on each function, it calls it first to check it and read through it, if there is anywhere where it returns
+    //false, the !function() is ran and the e.preventDefault is then run
     nameValidator();
     if (!nameValidator()) {
 
@@ -549,12 +559,12 @@ form.addEventListener("submit", (e) =>
 
 
 
-        validatecardnumber();
+    validatecardnumber();
 
-        if (!validatecardnumber) {
+    if (!validatecardnumber) {
 
-            console.log("no cardnumber");
-            e.preventDefault();
+        console.log("no cardnumber");
+        e.preventDefault();
 
 
     }
@@ -581,7 +591,7 @@ form.addEventListener("submit", (e) =>
     }
 
 
-    
+
 
 
 
