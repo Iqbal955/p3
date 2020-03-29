@@ -327,7 +327,11 @@ paymentelement.addEventListener("click", (e) => { //adding an event listener to 
 const payPalOption = () =>
 
 {
-    if (paypalform.selected) {
+    if (paypalform.selected === true) {
+        creditcardform.selected = false;
+
+
+        console.log("pay pal chosen");
 
         return true;
 
@@ -468,7 +472,7 @@ const validatecardnumber = () => {
 
     const cardnumberInput = cardnumber.value; //getting the user value
 
-    if (creditcardform.selected = true) {
+    if (creditcardform.selected === true) {
 
         console.log("credit card form selected");
 
