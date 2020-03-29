@@ -67,6 +67,13 @@ jobtitle.addEventListener("change", (event) => { //adding event listener on job 
 
         //   console.log("other pressed");
     }
+
+
+    else {
+
+
+        other.style.display = "none";
+    }
 });
 
 function hideSelectTheme() {
@@ -279,7 +286,7 @@ paymentelement.addEventListener("click", (e) => { //adding an event listener to 
         if (e.target.value == "credit card") { //if the e.target.value == credit card
 
 
-
+            creditcardform.selected = true;
             creditcardform.style.display = "block"; //display the creditcard form
             bitcoin.style.display = "none"; //hide the bitcoin
             paypalform.style.display = "none"; //hide the paypal
@@ -291,15 +298,17 @@ paymentelement.addEventListener("click", (e) => { //adding an event listener to 
 
         else if (e.target.value == "paypal") { //if the e.target.value == to option paypal
 
-
+            paypalform.selected = true;
             paypalform.style.display = "block"; //display the paypalform
             bitcoin.style.display = "none"; //hide the bitcoin
             creditcardform.style.display = "none"; //hide the creditcardfomr
+           
 
 
         }
         else if (e.target.value == "bitcoin") { //if target value is bitcoin
 
+            bitcoin.selected = true;
             bitcoin.style.display = "block"; //show bitcoin
             paypalform.style.display = "none"; //hide paypal
             creditcardform.style.display = "none"; //hide creditcard
@@ -313,6 +322,61 @@ paymentelement.addEventListener("click", (e) => { //adding an event listener to 
 
 });
 
+
+
+const payPalOption = () =>
+
+{
+    if (paypalform.selected) {
+
+        return true;
+
+
+
+    }
+
+    else {
+        console.log("Paypal not chosen");
+        return false;
+
+    }
+   
+
+}
+
+
+const bitCoinOption = () =>
+{
+
+
+    if (bitcoinform.selected) {
+
+        console.log("Bit coin chosen");
+        return true;
+    }
+    else
+    {
+
+        console.log("bit coin not chosen");
+
+    }
+
+}
+
+/*
+const bitCoinInput = () => {
+
+
+    if (bitcoinform.selected = true) {
+
+        console.log("bitcoin selected");
+
+        return true;
+
+    }
+
+}
+*/
 
 const nameValidator = () => { //function of name validator
 
@@ -404,49 +468,61 @@ const validatecardnumber = () => {
 
     const cardnumberInput = cardnumber.value; //getting the user value
 
+    if (creditcardform.selected = true) {
+
+        console.log("credit card form selected");
+
+        if (cardnumber.value === "") { //if there is no input the error message displays
+            //   console.log("no value entered");
+            creditcardmissingtext.textContent = "The credit card field cannot be empty, please use a valid credit-card";
+            creditcardmissingtext.style.color = "red";
+
+            return false;
+            //returns false
+        }
+
+        //if it is more than 16
+        else if (cardnumberInput.length > 16) {
+            creditcardmissingtext.textContent = "Enter a number between 13-16 characters";
+            creditcardmissingtext.style.color = "red";
+
+            return false;
 
 
-    if (cardnumber.value === "") { //if there is no input the error message displays
-        //   console.log("no value entered");
-        creditcardmissingtext.textContent = "The credit card field cannot be empty, please use a valid credit-card";
-        creditcardmissingtext.style.color = "red";
 
-        return false;
-        //returns false
+
+
+        }
+        //if it is less than 13
+
+        else if (cardnumberInput.length < 13) {
+
+            creditcardmissingtext.textContent = "Enter a number more than 13 digits";
+            creditcardmissingtext.style.color = "red";
+            return false;
+        }
+
+        else if (cardnumberInput.length >= 13 || cardnumberInput.length <= 16) {
+
+            //if between 13 and 16
+            creditcardmissingtext.textContent = "✓";
+
+            creditcardmissingtext.style.color = "green";
+
+            var ccNum = document.getElementById("cc-num");
+            ccNum.style.borderColor = "green";
+
+            return true;
+
+
+        }
+
     }
 
-    //if it is more than 16
-    else if (cardnumberInput.length > 16) {
-        creditcardmissingtext.textContent = "Enter a number between 13-16 characters";
-        creditcardmissingtext.style.color = "red";
-
+    else {
+        console.log("creditcard not selected");
         return false;
 
-
-
-
-
-    }
-    //if it is less than 13
-
-    else if (cardnumberInput.length < 13) {
-
-        creditcardmissingtext.textContent = "Enter a number more than 13 digits";
-        creditcardmissingtext.style.color = "red";
-        return false;
-    }
-
-    else if (cardnumberInput.length >= 13 || cardnumberInput.length <= 16) {
-
-        //if between 13 and 16
-        creditcardmissingtext.textContent = "✓";
-
-        creditcardmissingtext.style.color = "green";
-
-        var ccNum = document.getElementById("cc-num");
-        ccNum.style.borderColor = "green";
-
-        return true;
 
 
     }
@@ -559,6 +635,7 @@ form.addEventListener("submit", (e) => {
         e.preventDefault();
     }
 
+    payPalOption();
 
 
     validatecardnumber();
@@ -591,6 +668,9 @@ form.addEventListener("submit", (e) => {
 
 
     }
+
+
+
 
 
 
