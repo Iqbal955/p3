@@ -24,8 +24,8 @@ var cardnumber = document.getElementById("cc-num");
 var cardmonth = document.getElementById("");
 var cardzip = document.getElementById("zip");
 var cvv = document.getElementById("cvv");
-
-
+var payPalFormI = document.querySelector("#payment option[value='paypal']");
+var bitCoinFormI = document.querySelector("#payment option[value='bitcoin']");
 // Getting the creditcard fields and creating the missing text fields
 var creditcard = document.querySelector('option[value="credit card"]');
 var creditcardfield = document.querySelector(".col-6");
@@ -327,8 +327,8 @@ paymentelement.addEventListener("click", (e) => { //adding an event listener to 
 const payPalOption = () =>
 
 {
-    if (paypalform.selected === true) {
-        creditcardform.selected = false;
+    if (payPalFormI.selected === true) {
+        creditcard.selected = false;
 
 
         console.log("pay pal chosen");
@@ -353,8 +353,8 @@ const bitCoinOption = () =>
 {
 
 
-    if (bitcoinform.selected) {
-
+    if (bitCoinFormI.selected === true) {
+        creditcard.selected = false;
         console.log("Bit coin chosen");
         return true;
     }
@@ -362,6 +362,7 @@ const bitCoinOption = () =>
     {
 
         console.log("bit coin not chosen");
+        return false;
 
     }
 
@@ -472,7 +473,7 @@ const validatecardnumber = () => {
 
     const cardnumberInput = cardnumber.value; //getting the user value
 
-    if (creditcardform.selected === true) {
+    if (creditcard.selected === true) {
 
         console.log("credit card form selected");
 
@@ -530,6 +531,8 @@ const validatecardnumber = () => {
 
 
     }
+
+    return false;
     // const vaildUserInputEmail = (/^[A-za-z0-9]+@+[A-za-z0-9]+\.[A-za-z]{2,3}$/).test(userInputEmail.value);
     // return vaildUserInputEmail;
 
@@ -542,31 +545,34 @@ cardnumberzipinput.appendChild(cardnumberzipmissing);
 
 const cardnumerzipvalidtor = () => {
     //creating the cardnumber zip function
+    if (creditcard.selected === true) {
+
+        var cardzipValue = cardzip.value; //getting user input
 
 
-    var cardzipValue = cardzip.value; //getting user input
+        if (cardzipValue.length == 5) { //if equal to 5 its ok
+
+            cardnumberzipmissing.textContent = "OK";
+
+            cardnumberzipmissing.style.color = "green";
+            return true;
 
 
-    if (cardzipValue.length == 5) { //if equal to 5 its ok
+        }
 
-        cardnumberzipmissing.textContent = "OK";
+        else {
+            //enter 5 digit number
 
-        cardnumberzipmissing.style.color = "green";
-        return true;
+            cardnumberzipmissing.textContent = "Please enter a 5 digit number";
+            cardnumberzipmissing.style.color = "red";
+
+            return false;
 
 
+        }
     }
 
-    else {
-        //enter 5 digit number
-
-        cardnumberzipmissing.textContent = "Please enter a 5 digit number";
-        cardnumberzipmissing.style.color = "red";
-
-        return false;
-
-
-    }
+    return false;
 }
 
 //creates errortext for cvv
@@ -579,30 +585,37 @@ console.log(cvvparent);
 //should be called cvv validator
 const hideCVV = () => {
 
-    var cvvInput = cvv.value; //gets cvv value from the user
-    //console.log(cvvInput + "this is the cvvInput");
 
-    if (cvvInput.length == 3) { //if the value is 3
+    if (creditcard.selected === true) {
 
-        // console.log("3!!");
-        cvvMissingText.textContent = "OK";
-        cvvMissingText.style.color = "green";
-        return true;
+        var cvvInput = cvv.value; //gets cvv value from the user
+        //console.log(cvvInput + "this is the cvvInput");
+
+        if (cvvInput.length == 3) { //if the value is 3
+
+            // console.log("3!!");
+            cvvMissingText.textContent = "OK";
+            cvvMissingText.style.color = "green";
+            return true;
 
 
+        }
+
+        else { //if it is not 3
+            console.log("not 3");
+            cvvMissingText.textContent = "Please enter a valid 3 digit number";
+            cvvMissingText.style.color = "red";
+            return false;
+
+
+
+
+        }
     }
 
-    else { //if it is not 3
-        console.log("not 3");
-        cvvMissingText.textContent = "Please enter a valid 3 digit number";
-        cvvMissingText.style.color = "red";
-        return false;
+    return false;
 
-
-
-
-    }
-
+    
 }
 
 
@@ -633,13 +646,23 @@ form.addEventListener("submit", (e) => {
 
     activityValidator();
 
+
     if (!activityValidator()) {
 
-        console.log("activity not chosen");
-        e.preventDefault();
-    }
+     console.log("activity not chosen");
+     e.preventDefault();
+   }
 
-    payPalOption();
+    if (payPalFormI.selected === true) {
+
+        payPalOption();
+
+
+    }
+    if (bitCoinFormI.selected === true) {
+
+        bitCoinOption();
+    }
 
 
     validatecardnumber();
