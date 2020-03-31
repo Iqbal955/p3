@@ -524,13 +524,11 @@ const validatecardnumber = () => {
 
     }
 
-    else {
-        console.log("creditcard not selected");
-        return false;
+        else {
+                console.log("creditcard not selected");
+                return false;
 
-
-
-    }
+              }
 
     return false;
     // const vaildUserInputEmail = (/^[A-za-z0-9]+@+[A-za-z0-9]+\.[A-za-z]{2,3}$/).test(userInputEmail.value);
@@ -644,56 +642,80 @@ form.addEventListener("submit", (e) => {
 
     }
 
-    activityValidator();
 
 
-    if (!activityValidator()) {
+  activityValidator();
 
-     console.log("activity not chosen");
-     e.preventDefault();
-   }
+
+    if (!activityValidator()) 
+
+   {
+
+    console.log("activity not chosen");
+        e.preventDefault();
+
+    }
 
     if (payPalFormI.selected === true) {
 
         payPalOption();
-
-
     }
+
+
     if (bitCoinFormI.selected === true) {
 
         bitCoinOption();
     }
 
 
-    validatecardnumber();
 
-    if (!validatecardnumber) {
+    if (creditcard.selected === true) {
 
-        console.log("no cardnumber");
-        e.preventDefault();
+        validatecardnumber();
 
+
+        if (!validatecardnumber) {
+            console.log("no cardnumber");
+            e.preventDefault();
+
+
+        }
+    }
+    
+
+
+
+
+    if (creditcard.selected === true) {
+
+        cardnumerzipvalidtor();
+
+
+            if (!cardnumberzipinput) {
+
+
+                console.log("no zip");
+                e.preventDefault();
+
+            }
 
     }
 
-    cardnumerzipvalidtor();
 
 
-    if (!cardnumberzipinput) {
+    if (creditcard.selected === true) {
+
+        hideCVV();
+
+            if (!hideCVV) {
 
 
-        console.log("no zip");
-        e.preventDefault();
+                console.log("no zip");
 
-    }
-    hideCVV();
-    if (!hideCVV) {
+                e.preventDefault();
 
 
-        console.log("no zip");
-
-        e.preventDefault();
-
-
+        }
     }
 
 
