@@ -447,6 +447,7 @@ const activityValidator = () => { //creating function for the activityvalidtaor
 
 
     for (i = 0; i < activityinput.length; i++) { //goes through all activityinputs
+
         if (activityinput[i].checked) { //if anyone of them is checked set it to green
             activityform.style.borderColor = "green";
             //      console.log("activity chosen");
@@ -454,12 +455,12 @@ const activityValidator = () => { //creating function for the activityvalidtaor
             return true; //returns true
         }
 
+        else {
+            activityform.style.borderColor = "red"; //if it returns true, it will skip this code, if not it will go here no need for else
 
-        activityform.style.borderColor = "red"; //if it returns true, it will skip this code, if not it will go here no need for else
-
-        activityerrormessage.textContent = "Please choose atleast one activity"; //sets error message
-        activityerrormessage.style.color = "red"; //sets the color to red
-
+            activityerrormessage.textContent = "Please choose atleast one activity"; //sets error message
+            activityerrormessage.style.color = "red"; //sets the color to red
+        }
         return false; //returns false
 
     }
@@ -674,7 +675,7 @@ form.addEventListener("submit", (e) => {
         validatecardnumber();
 
 
-        if (!validatecardnumber) {
+        if (!validatecardnumber()) {
             console.log("no cardnumber");
             e.preventDefault();
 
@@ -691,7 +692,7 @@ form.addEventListener("submit", (e) => {
         cardnumerzipvalidtor();
 
 
-            if (!cardnumberzipinput) {
+        if (!cardnumerzipvalidtor()) {
 
 
                 console.log("no zip");
@@ -707,7 +708,7 @@ form.addEventListener("submit", (e) => {
 
         hideCVV();
 
-            if (!hideCVV) {
+            if (!hideCVV()) {
 
 
                 console.log("no zip");
