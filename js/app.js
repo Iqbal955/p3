@@ -623,6 +623,12 @@ const hideCVV = () => {
 hideOther(); //the hide other  function is called
 
 
+creditcardform.addEventListener("keyup", validatecardnumber);
+creditcardform.addEventListener("keyup", cardnumerzipvalidtor);
+creditcardform.addEventListener("keyup", hideCVV);
+
+
+
 form.addEventListener("submit", (e) => {
     //the event listener listens on each function, it calls it first to check it and read through it, if there is anywhere where it returns
     //false, the !function() is ran and the e.preventDefault is then run
@@ -643,6 +649,8 @@ form.addEventListener("submit", (e) => {
 
 
     }
+
+
 
 
 
