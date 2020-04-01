@@ -460,8 +460,9 @@ const activityValidator = () => { //creating function for the activityvalidtaor
 
             activityerrormessage.textContent = "Please choose atleast one activity"; //sets error message
             activityerrormessage.style.color = "red"; //sets the color to red
+        //returns false
         }
-        return false; //returns false
+        
 
     }
 
